@@ -1,0 +1,188 @@
+.comp {
+  height: 100%;
+  background: linear-gradient(45deg, #465fff, #ffa636);
+  background-size: 400% 400%;
+  animation: gradientBackground 15s ease infinite;
+}
+
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.main {
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.top-bar {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: rgb(179, 182, 251);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  padding: 25px;
+}
+
+.general {
+  margin: 5px;
+  border-radius: 10px;
+  background-color: rgb(179, 182, 251);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.words-list {
+  margin: 5px;
+  border-radius: 10px;
+  background-color: rgb(179, 182, 251);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.users-list {
+  margin: 5px;
+  border-radius: 10px;
+  background-color: rgb(179, 182, 251);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.user-info {
+  margin: 5px;
+  border-radius: 10px;
+  background-color: rgb(179, 182, 251);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.error-word-input {
+  background-color: #ffaaaa
+}
+
+.scrollable-list {
+  overflow-y: auto;
+  max-height: 400px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.scrollable-list ul, ol {
+  list-style: none; /* Removes default indicators (bullets, numbers) */
+  padding-left: 0;  /* Remove default indentation for unordered lists */
+}
+
+.scrollable-list li {
+  margin-bottom: 5px; /* Space between items */
+  padding: 0 0; /* Padding within each item */
+}
+
+.loader {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader div {
+  margin-right: 40px;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #2549ff;
+  animation: dotmove 1.2s ease-in-out infinite;
+}
+
+.loader div:nth-child(1) {
+  animation-delay: -0.4s;
+}
+
+.loader div:nth-child(2) {
+  animation-delay: -0.2s;
+}
+
+@keyframes dotmove {
+  0% { transform: translateX(0px); }
+  50% { transform: translateX(40px); }
+  100% { transform: translateX(0px); }
+}
+
+button {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #b6b6b6;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+  background-color: rgba(53, 53, 53, 0.6);
+  color: #dddddd;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+
+button:active {
+  background-color: rgba(53, 53, 53, 0.6);
+  color: #dddddd;
+  transform: scale(95%);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+
+h1 {
+  font-size: 3.125rem;
+  color: #1c1c1c;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: -0.125rem;
+  margin: 0;
+  font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+  "Segoe UI Symbol";
+}
+
+input {
+  background-color: rgb(200, 202, 234);
+  border: none;
+  border-radius: 5px;
+  margin: 2px;
+  color: #121212;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.glow-effect {
+  background-color: #4b79a1;
+  box-shadow: 0 0 20px #91c7fb;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px #4b79a1;
+  }
+  to {
+    box-shadow: 0 0 40px #4b79a1;
+  }
+}
+
+@media only screen and (min-width: 1200px){
+  .wid1 {width: 25%}
+  .disp1 {display: flex}
+}
+
+@media only screen and (max-width: 1199px) {
+  .wid2 {width: 100%}
+  .disp2 {display: block}
+}
+
+
+
+

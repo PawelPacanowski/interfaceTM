@@ -1,0 +1,4 @@
+<div *ngIf="alive || isSelected" [ngClass]="{'comp': alive && !isSelected, 'selected': isSelected && alive}" (click)="handleClick()">
+  <div style="margin-left: 15px; margin-top: 5px; margin-bottom: 5px">{{userID}}</div>
+</div>
+

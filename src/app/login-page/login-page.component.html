@@ -1,0 +1,43 @@
+<!-- <label for="discord-server-id">Your discord server ID:</label><br>
+<input type="text" id="discord-server-id" name="discord-server-id">
+<br><br>
+<label for="discord-server-id">Your discord server ID:</label><br>
+<input type="text" id="discord-server-id" name="discord-server-id"> -->
+
+<div class="container">
+    <div class="login-panel">
+        <h1 style="margin: 20px; text-align: center;">Log-in</h1>
+        <br>
+        <div class="input-container">
+          <input type="text" [(ngModel)]="username" placeholder="Enter username" id="username"
+                 [class.error-input]="errorInputUsername || errorLogin" (input)="handleInputUsername()">
+
+          <input type="text" [(ngModel)]="dcServerID" placeholder="Enter discord server ID" id="dc-server"
+                 [class.error-input]="errorInputDCID || errorLogin" (input)="handleInputDCID()">
+
+          <input type="password" [(ngModel)]="password" placeholder="Enter your password" id="password"
+                 [class.error-input]="errorPassword || errorLogin" (input)="handlePasswordInput()">
+
+          <div style="margin-top: 15px"></div>
+          <button (click)="loginButton()">Log-in</button>
+        </div>
+        <br>
+      <div *ngIf="errorLogin" class="error-block" (click)="errorLogin = false">
+        <h2>Profile does not exist or wrong credentials</h2>
+      </div>
+      <div *ngIf="errorBotInit" class="error-block" (click)="errorBotInit = false">
+        <h2>There is no database yet for this server. You must invite bot to your server first</h2>
+      </div>
+    </div>
+  <div style="display: flex; justify-content: right; margin-left: 15%; margin-top: 5px">
+    <div>Don't have account yet?</div>
+    <button style="margin-left: 15px" (click)="navigateToRegistration()">Register</button>
+  </div>
+
+  <div *ngIf="loadingAnim" class="loader">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+

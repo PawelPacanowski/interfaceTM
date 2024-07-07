@@ -1,0 +1,177 @@
+<div *ngIf="sessionService.isEstablished()" class="comp">
+  <div class="top-bar">
+    <div style="margin-left: 25px">
+      <h1>Server {{dcServerID}} Dashboard</h1>
+    </div>
+    <div style="display: flex; align-items: center; margin-right: 25px">
+      <button style="width: 150px; height: 50px" (click)="logout()">Logout</button>
+    </div>
+
+  </div>
+
+  <div class="main disp1 disp2">
+    <div class="general wid1 wid2">
+      <div>
+        <h2 style="text-align: center">General statistics</h2>
+      </div>
+      <div>
+        <div style="display: flex; margin-left: 15px; margin-right: 15px; justify-content: space-between; margin-bottom: 15px">
+          <div>Total words:</div>
+          <div style="margin-left: 30%; position: relative"> {{serverTotWords}}</div>
+        </div>
+        <div style="display: flex; margin-left: 15px; margin-right: 15px; justify-content: space-between; margin-bottom: 15px">
+          <div>Flagged words:</div>
+          <div style="margin-left: 30%; position: relative"> {{serverTotFlagWords}}</div>
+        </div>
+        <div *ngIf="!(pendingGeneralInfo == 0)" class="loader">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="words-list wid1 wid2">
+      <div>
+        <h2 style="text-align: center">Flagged words</h2>
+      </div>
+      <div *ngIf="!pendingFlaggedWords" style="margin-top: 96px">
+      </div>
+      <div *ngIf="pendingFlaggedWords" class="loader">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin-right: 15px">
+        <input placeholder="Search server words" style="margin-left: 15px" type="text" [(ngModel)]="searchByServ" (input)="filterWords('server')">
+        <div>
+          <button (click)="sortWordsAsc()">ASC</button>
+          <button (click)="sortWordsDsc()">DSC</button>
+        </div>
+      </div>
+      <div style="margin-bottom: 15px">
+      </div>
+      <div class="scrollable-list">
+        <ul *ngIf="searchByServ == ''">
+          <li *ngFor="let item of serverWords">
+            <app-word-list-element
+              (deleteClick)="pendingFlaggedWords = true"
+              (unalived)="wordUnalived()"
+              [item]="item" [canDelete]="true"
+              [dcServer]="dcServerID">
+            </app-word-list-element>
+          </li>
+        </ul>
+        <ul *ngIf="filteredWordsServ.length > 0 && searchByServ != ''">
+          <li *ngFor="let item of filteredWordsServ">
+            <app-word-list-element
+              (unalived)="wordUnalived()"
+              [item]="item" [canDelete]="true">
+            </app-word-list-element>
+          </li>
+        </ul>
+      </div>
+      <div style="margin: 50px 15px 15px 15px;">
+        <input placeholder="Add flagged word" [(ngModel)]="wordToAdd" (input)="handleWordInput()" [class.error-word-input]="wordInputError" type="text">
+        <button (click)="addWord()" style="margin-left: 15px">Add word</button>
+      </div>
+    </div>
+
+    <div class="users-list wid1 wid2">
+      <div>
+        <h2 style="text-align: center">Users</h2>
+      </div>
+      <div *ngIf="!pendingUserList" style="margin-top: 96px">
+      </div>
+      <div *ngIf="pendingUserList" class="loader">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin-right: 15px">
+        <input placeholder="Search user" style="margin-left: 15px" type="text" [(ngModel)]="searchUser" (input)="filterUsers()">
+        <div>
+          <button (click)="sortUsersAsc()">ASC</button>
+          <button (click)="sortUsersDsc()">DSC</button>
+        </div>
+      </div>
+      <div style="margin-bottom: 15px">
+      </div>
+      <div class="scrollable-list" *ngIf="searchUser == ''">
+        <ul>
+          <li *ngFor="let user of serverUsers">
+            <app-user-list-element
+              [userID]="user"
+              (onSelect)="loadSelectedUser($event)"
+              (onUnselect)="deleteMemberData($event)">
+            </app-user-list-element>
+          </li>
+        </ul>
+      </div>
+      <div class="scrollable-list" *ngIf="filteredUsers.length > 1 && searchUser != ''">
+        <ul>
+          <li *ngFor="let user of filteredUsers">
+            <app-user-list-element
+              [userID]="user"
+              (onSelect)="loadSelectedUser($event)"
+              (onUnselect)="deleteMemberData($event)">
+            </app-user-list-element>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="user-info wid1 wid2">
+      <div>
+        <h2 style="text-align: center">User stats</h2>
+      </div>
+      <div *ngIf="selectedMember">
+        <div style="display: flex; margin-left: 15px; margin-right: 15px; justify-content: space-between">
+          <div>Total words:</div>
+          <div style="margin-right: 70%"> {{memberTotWords}}</div>
+        </div>
+        <div style="display: flex; margin-left: 15px; margin-right: 15px; justify-content: space-between">
+          <div>Flagged words:</div>
+          <div style="margin-right: 70%"> {{memberTotFlagWords}}</div>
+        </div>
+        <div *ngIf="!pendingUserStats" style="margin-top: 96px">
+        </div>
+        <div *ngIf="pendingUserStats" class="loader">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-right: 15px">
+          <input placeholder="Search user words" style="margin-left: 15px" type="text" [(ngModel)]="searchByUsr" (input)="filterWords('user')">
+          <div>
+            <button (click)="sortUserDataAsc()">ASC</button>
+            <button (click)="sortUserDataDsc()">DSC</button>
+          </div>
+        </div>
+        <div style="margin-bottom: 15px">
+        </div>
+        <div class="scrollable-list">
+          <ul *ngIf="searchByUsr == ''">
+            <li *ngFor="let item of selectedMemberData">
+              <app-word-list-element
+                (unalived)="wordUnalived()"
+                [item]="item" [canDelete]="false">
+              </app-word-list-element>
+            </li>
+          </ul>
+          <ul *ngIf="filteredWordsUsr.length > 0 && searchByUsr != ''">
+            <li *ngFor="let item of filteredWordsUsr">
+              <app-word-list-element
+                (unalived)="wordUnalived()"
+                [item]="item" [canDelete]="false">
+              </app-word-list-element>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,7 @@
+<div *ngIf="alive" class="comp">
+  <div style="margin-right: 5px; z-index: 2" *ngIf="canDelete"><button (click)="deleteWordFromDatabase()">delete</button></div>
+  <div style="position: relative; display: flex; width: 100%; height: 100%; z-index: 1">
+    <div style="position: absolute; text-align: center; margin-left: 15px">{{item.count}}</div>
+    <div style="position: absolute; margin-left: 75px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 75%">{{item.word}}</div>
+  </div>
+</div>

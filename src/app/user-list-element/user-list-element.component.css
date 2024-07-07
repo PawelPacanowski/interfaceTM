@@ -1,0 +1,30 @@
+.comp {
+  width: 99%;
+  height: 25px;
+  margin: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  /*background-color: rgb(135, 135, 211);*/
+  background: linear-gradient(#a5a5f4, #8f8fd8);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.comp:hover {
+  /*box-shadow: 0 0 20px #9bb6ff;*/
+  /*background-color: rgb(157, 157, 248);*/
+  background: linear-gradient(#9d9df8, #7e7ebc);
+}
+
+.selected {
+  width: 99%;
+  height: 25px;
+  margin: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  /*background-color: rgb(123, 137, 255);*/
+  background: linear-gradient(#8d8df6, #7272bf);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  transform: scale(98%);
+}

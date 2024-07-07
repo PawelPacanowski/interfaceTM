@@ -1,0 +1,77 @@
+<!-- <label for="discord-server-id">Your discord server ID:</label><br>
+<input type="text" id="discord-server-id" name="discord-server-id">
+<br><br>
+<label for="discord-server-id">Your discord server ID:</label><br>
+<input type="text" id="discord-server-id" name="discord-server-id"> -->
+
+
+<div class="container">
+
+  <div class="register-panel">
+    <h1 style="margin: 20px; text-align: center;">Registration</h1>
+    <br>
+    <div class="input-container">
+      <div style="display: flex;">
+        <label for="server-id">Register your Discord server</label>
+        <div class="info-sign">
+          <a>*</a>
+          <div class="info-overlay">
+            <a>You can find your server ID by enabling developer mode in settings -> advanced, then right click your server</a>
+          </div>
+        </div>
+      </div>
+
+      <input type="text" [(ngModel)]="dcServerID" placeholder="Enter discord server ID" id="server-id"
+             [class.error-input]="errorInputDCID || errorRegister" (input)="handleInputDCID()">
+
+      <input type="text" [(ngModel)]="username" placeholder="Enter your username" id="username"
+             [class.error-input]="errorInputUsername || errorRegister" (input)="handleInputUsername()">
+
+      <input type="password" [(ngModel)]="password1" placeholder="Enter your password" id="password1"
+             [class.error-input]="errorPassword" (input)="handlePasswordInput()">
+
+      <input type="password" [(ngModel)]="password2" placeholder="Confirm your password" id="password2"
+             [class.error-input]="errorPassword" (input)="handlePasswordInput()">
+      <div style="margin-top: 15px"></div>
+      <button (click)="registerButton()">Register</button>
+    </div>
+    <br>
+    <div *ngIf="errorRegister" class="error-block" (click)="errorRegister = false">
+      <h2 style="margin-left: 15px; margin-right: 15px">Server already registered for this User</h2>
+    </div>
+    <div *ngIf="registerSuccess" class="success-block" (click)="registerSuccess = false">
+      <h2 style="margin-left: 15px; margin-right: 15px">Profile registered successfully!</h2>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: right; margin-left: 15%; margin-top: 5px">
+    <div>Already have an account?</div>
+    <button style="margin-left: 15px" (click)="navigateToLogin()">Log-in</button>
+  </div>
+
+  <div *ngIf="loadingAnim" class="loader">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+
+
+
+  <!-- <div class="right-div">
+      <h1>Rejestracja</h1>
+      <br>
+      <div class="input-container">
+          <div style="display: flex; justify-content: space-between;">
+              <label for="email-input-field">Email:</label>
+              <input id="email-input-field">
+          </div>
+
+          <div style="display: flex; justify-content: space-between;">
+              <label for="password-input-field">Password:</label>
+              <input id="password-input-field">
+          </div>
+      </div>
+      <br>
+  </div> -->
+</div>
+
